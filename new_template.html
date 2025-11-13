@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <title>аqulуx - Защищенный отчет</title>
+    <meta name="keywords" content="безопасность, отчет, уязвимость" />
+    <meta name="description" content="Защищенный отчет об уязвимостях" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+    <link href="assets/css/styles.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />
+    <style>
+        /* Цвета текста для критичности */
+        .block__bottom.red { color: #dc2626; }
+        .block__bottom.orange { color: #ea580c; }
+        .block__bottom.yellow { color: #ca8a04; }
+        .block__bottom.green { color: #16a34a; }
+        
+    </style>
+</head>
+
+<body>
+    <!-- Слой защиты отчета -->
+
+    <div class="wrapper">
+        <main>
+            <section class="report__main">
+                <img src="assets/img/particle_star.png" alt="" class="report__part" />
+                <div class="container">
+                    <a href="/" class="logo">
+                        <svg width="103" height="20" viewBox="0 0 103 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.8198 17.8223L13.9424 13.2666H4.28035L2.403 17.8223H0L7.3592 0.300375H10.9387L18.2979 17.8223H15.8198ZM5.03129 11.4143H13.1915L9.11139 1.47684L5.03129 11.4143Z" fill="#1F2937"></path>
+                            <path
+                                d="M36.5772 9.06133C36.5772 10.7468 36.2601 12.2486 35.626 13.567C34.9919 14.8853 34.0657 15.9366 32.8475 16.7209L34.7749 18.9737L33.1729 20L31.0953 17.572C29.9939 17.9391 28.7924 18.1227 27.4908 18.1227C24.6039 18.1227 22.3677 17.2883 20.7824 15.6195C19.2138 13.9508 18.4295 11.7647 18.4295 9.06133C18.4295 6.35795 19.2138 4.17188 20.7824 2.50313C22.3677 0.834376 24.6039 0 27.4908 0C30.3778 0 32.6139 0.834376 34.1992 2.50313C35.7845 4.17188 36.5772 6.35795 36.5772 9.06133ZM27.4908 16.1702C28.2751 16.1702 28.9927 16.0701 29.6435 15.8698L28.1416 14.0926L29.7186 13.0413L31.4207 15.0438C33.2564 13.7922 34.1742 11.7981 34.1742 9.06133C34.1742 6.97539 33.5901 5.27326 32.422 3.95494C31.2538 2.61994 29.6101 1.95244 27.4908 1.95244C25.3882 1.95244 23.7528 2.61994 22.5847 3.95494C21.4166 5.27326 20.8325 6.97539 20.8325 9.06133C20.8325 11.1473 21.4166 12.8577 22.5847 14.1927C23.7528 15.5111 25.3882 16.1702 27.4908 16.1702Z"
+                                fill="#1F2937"
+                            ></path>
+                            <path d="M55.2327 11.0138C55.2327 15.753 52.5794 18.1227 47.2728 18.1227C41.9661 18.1227 39.3128 15.753 39.3128 11.0138V0.300375H41.7158V10.7885C41.7158 14.3596 43.5681 16.1452 47.2728 16.1452C50.9774 16.1452 52.8297 14.3596 52.8297 10.7885V0.300375H55.2327V11.0138Z" fill="#1F2937"></path>
+                            <path d="M61.425 15.8448H71.4375V17.8223H59.022V0.300375H61.425V15.8448Z" fill="#1F2937"></path>
+                            <path d="M85.4187 0.300375L77.5839 10.7134V17.8223H75.1809V10.6884L67.3711 0.300375H70.1997L76.4074 8.83604L82.6653 0.300375H85.4187Z" fill="#1F2937"></path>
+                            <path d="M102.891 17.8223H100.013L94.1802 10.5131L88.3479 17.8223H85.6195L92.8035 8.91114L86.0701 0.300375H88.9487L94.2553 7.25907L99.587 0.300375H102.315L95.632 8.83604L102.891 17.8223Z" fill="#1F2937"></path>
+                        </svg>
+                    </a>
+                    <h1>
+                        Анализ уязвимостей <br />
+                        и рекомендации
+                    </h1>
+                </div>
+            </section>
+            <section class="report__stats">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="block">
+                                <div class="block__top">Уровень опасности</div>
+                                <div class="block__bottom {{CRITICALITY_CLASS}}">{{CRITICALITY}}</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="block">
+                                <div class="block__top">Уязвимость</div>
+                                <div class="block__bottom">{{VULN_NAME}}</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="block">
+                                <div class="block__top">Клиент</div>
+                                <div class="block__bottom">{{CLIENT}}</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="block">
+                                <div class="block__top">Дата анализа</div>
+                                <div class="block__bottom">{{CURRENT_DATE}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="report__desc">
+                <div class="container">
+                    <h3>Описание</h3>
+                    <h1>{{DESCRIPTION}}</h1>
+                    <div class="img">
+                        {{SCREENSHOT_SECTION}}
+                        <div class="img__text">Скриншот уязвимости</div>
+                    </div>
+                    <div class="report__info">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="report__left">Об уязвимости</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="report__right">
+                                    <div class="report__h1">Контекст уязвимости</div>
+                                    <div class="text">
+                                        {{VULNERABILITY_CONTEXT}}
+                                    </div>
+                                    <div class="report__h1">Риски</div>
+                                    <ul>
+                                        {{RISKS}}
+                                    </ul>
+                                    <div class="report__h1">Шаги воспроизведения</div>
+                                    <ol>
+                                        {{REPRO_STEPS}}
+                                    </ol>
+                                    <div class="copy">
+                                        <div class="copy__top">
+                                            <span>HTTP</span>
+                                            <button>
+                                                <svg><use xlink:href="assets/img/icon.svg#copy"></use></svg>
+                                                <span>Копировать</span>
+                                            </button>
+                                        </div>
+                                        <div class="copy__wrapper">
+                                            {{REQUEST_EXAMPLE}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report__info">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="report__left">Технические детали</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="report__right">
+                                    <div class="report__h1">Механизм эксплуатации</div>
+                                    <ul>
+                                        {{EXPLOITATION_MECHANISM}}
+                                    </ul>
+                                    <div class="report__h1">Условия эксплуатации</div>
+                                    <ul>
+                                        {{EXPLOITATION_CONDITIONS}}
+                                    </ul>
+                                    <div class="report__h1">Технические детали</div>
+                                    <div class="text">{{TECH_DETAILS}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report__info">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="report__left">
+                                    Рекомендации по устранению
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="report__right">
+                                    {{RECOMMENDATIONS}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__left">
+                    <a href="/" class="footer__logo">аqulуx</a>
+                    <div class="footer__date">Дата анализа: {{CURRENT_DATE}}</div>
+                </div>
+                <a href="/" class="footer__right">аqulуx.com</a>
+            </div>
+        </footer>
+    </div>
+    <script src="../../../assets/js/report.js"></script>
+	<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accessButton = document.getElementById('accessReport');
+            const protectionLayer = document.getElementById('reportProtection');
+            const wrapper = document.querySelector('.wrapper');
+            
+            accessButton.addEventListener('click', function() {
+                // 1. Показываем отчет
+                wrapper.classList.add('report-unlocked');
+                
+                // 2. Отправляем запрос на сервер для удаления отчета
+                const reportId = document.getElementById('reportId').textContent;
+                fetch(`/delete-report.php?id=${reportId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // 3. Плавно скрываем защитный слой
+                        protectionLayer.classList.add('hidden');
+                        
+                        // 4. Обновляем историю, чтобы нельзя было вернуться
+                        history.replaceState(null, document.title, location.href);
+                        
+                        // 5. Показываем уведомление об успехе
+                        alert('Отчет открыт и удален с сервера. Сохраните важные данные.');
+                    } else {
+                        alert('Ошибка при удалении отчета: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Произошла ошибка при удалении отчета');
+                });
+            });
+            
+            // Блокировка контекстного меню
+            document.addEventListener('contextmenu', function(e) {
+                if (!wrapper.classList.contains('report-unlocked')) {
+                    e.preventDefault();
+                    alert('Контекстное меню заблокировано до подтверждения доступа');
+                }
+            });
+            
+            // Блокировка клавиш PrintScreen
+            document.addEventListener('keydown', function(e) {
+                if (!wrapper.classList.contains('report-unlocked') && 
+                   (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p'))) {
+                    e.preventDefault();
+                    alert('Действие заблокировано до подтверждения доступа');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
